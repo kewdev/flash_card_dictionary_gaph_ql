@@ -4,7 +4,9 @@ from pathlib import Path
 BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-miw7rl0ytvd8g9h=(vn9_2)$4xis9g&94nc^eyns#rl_$&pn29'
 DEBUG = True
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    '*'
+]
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -12,6 +14,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'graphene_django',
+    'flash_cards'
 ]
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -44,6 +48,7 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
+        "ATOMIC_MUTATIONS": True,
     }
 }
 AUTH_PASSWORD_VALIDATORS = [
@@ -67,3 +72,8 @@ USE_L10N = True
 USE_TZ = True
 STATIC_URL = '/static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+GRAPHENE = {
+    'SCHEMA': 'flash_cards.schemas.flash_card.schema',
+    "ATOMIC_MUTATIONS": True,
+}
